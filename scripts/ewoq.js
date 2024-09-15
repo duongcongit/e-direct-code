@@ -388,7 +388,6 @@ const ext = async () => {
 
 }
 
-ext()
 
 window.onload = () => {
 
@@ -520,9 +519,10 @@ window.onload = () => {
 
     // =========== TASK TIME COUNTER ===========
     const createTimeCounterClockBox = () => {
+        let cssTaskTime = 'left: 42vw; top: 10px; width: fit-content; min-width: 100px; background-color: rgb(68, 68, 68); position: fixed; border-radius: 10px; display: flex; justify-content: center; padding: 10px;'
         let timeCounterClockCounter = document.createElement("div");
-        let taskTimeContent = '<div id="task-time" style="display:none;">'
-            + '<img src="' + extensionUrl + 'assets/images/kisspng-clock.png" alt="" style="height: 20px;padding-right: 5px;margin-top: 2px;">'
+        let taskTimeContent = '<div id="task-time" style="display:none;' + cssTaskTime + '">'
+            + '<img src="https://w7.pngwing.com/pngs/971/269/png-transparent-clock-computer-icons-clock-cdr-text-time-thumbnail.png" alt="" style="height: 20px;padding-right: 5px;margin-top: 2px;">'
             + '<p id="txt-task-time" style="margin: 0; display: inline;color: white;margin-top: 4px">0</p>'
             + '</div>';
         timeCounterClockCounter.innerHTML = taskTimeContent;
@@ -532,10 +532,12 @@ window.onload = () => {
     const showTimeCounterClockBox = () => {
         document.getElementById("txt-task-time").innerText = convertTime(timeCounterClockCounter);
         document.getElementById("task-time").style.display = "flex";
+        document.title = convertTime(timeCounterClockCounter) + " | Ewoq Rating Portal"
     }
 
     const hideTimeCounterClock = () => {
         document.getElementById("task-time").style.display = "none";
+        document.title = "Ewoq Rating Portal"
     }
 
     const resetTimeCounterClockCounter = () => {
@@ -555,12 +557,13 @@ window.onload = () => {
 
     // =========== AUTO SUBMIT COUNTER ===========
     const createAutoSubmitBox = () => {
+        let cssAtSb = 'left: 65vw; top: 10px; width: 150px; height: 93px; background-color: rgb(68, 68, 68); position: fixed; border-radius: 10px; text-align: center; padding: 9px 10px 9px 10px;'
         let autoSubmitBox = document.createElement("div");
-        let autoSubmitBoxContent = '<div id="auto-submit-box" class="notranslate" style="display:none">'
-            + '<p style="color: white;">'
+        let autoSubmitBoxContent = '<div id="auto-submit-box" class="notranslate" style="display:none;' + cssAtSb + '">'
+            + '<p style="color: white;margin-bottom: 5px;">'
             + 'Auto submit in <br> '
             + '<strong style="color: rgb(0, 217, 255);font-size: 15px;" id="txt-time-count-submit">0</strong></p>'
-            + '<p type="button" style="cursor: pointer;" id="btn-cancel-auto-submit">CANCEL</p></div>';
+            + '<p type="button" style="cursor: pointer;margin-bottom: 5px;color: white;margin-top: 0px;font-weight: 800;text-shadow: 1px 1px #992400;" id="btn-cancel-auto-submit">CANCEL</p></div>';
         autoSubmitBox.innerHTML = autoSubmitBoxContent;
         headerContainer.appendChild(autoSubmitBox);
         let btn_cancel_auto_submit = document.getElementById("btn-cancel-auto-submit");
@@ -587,7 +590,7 @@ window.onload = () => {
         let autoReloadBox = document.createElement("div");
         let autoReloadBoxContent = '<div id="auto-reload-box" class="notranslate" style="display:none">'
             + '<div><p style="color: white;">'
-            + '<img src="' + extensionUrl + 'assets/images/reload-icon.png" alt="" style="height: 40px;"><br>'
+            + '<img src="https://w7.pngwing.com/pngs/1/325/png-transparent-update-arrow-refresh-renew-synchronize-%D0%92asic-icon-thumbnail.png" alt="" style="height: 40px;"><br>'
             + '<strong style="color: rgb(0, 217, 255);font-size: 20px;" id="txt-time-count-reload">0</strong></p>'
             + '</div><div><p type="button" style="cursor: pointer;" id="btn-cancel-auto-reload">CANCEL</p></div></div>';
         autoReloadBox.innerHTML = autoReloadBoxContent;
@@ -623,7 +626,7 @@ window.onload = () => {
             + '<br>'
             + '<p style="margin: 5px; display: inline;color: white;margin: 15px 0 10px 0;">There are tasks available!</p>'
             + '<br>'
-            + '<img id="btn-close-task-noti" type="button" style="cursor: pointer;width: 50px;margin: 15px 0 10px 0;" src="' + extensionUrl + 'assets/images/cancel-icon-circle.png" alt="">'
+            + '<img id="btn-close-task-noti" type="button" style="cursor: pointer;width: 50px;margin: 15px 0 10px 0;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQiI3dFXjZDqwT-jPtGIcZFT3rX5UjWdYOBA&s" alt="">'
             + '</div>'
             + '</div>';
         headerContainer.appendChild(notiBox);
