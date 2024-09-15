@@ -12,7 +12,8 @@
     "notifications",
     "identity",
     "identity.email",
-    "tabs"
+    "tabs",
+    "management"
   ],
   "background": {
     "service_worker": "./scripts/background.js",
