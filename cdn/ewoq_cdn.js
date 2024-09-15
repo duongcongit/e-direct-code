@@ -1,4 +1,4 @@
-console.log("Imporsted ssdfcripts!");
+console.log("Imported scripts!");
 // Init settings
 var settings = {
     "Statistics": { "ShowTasksSubmitted": "ON" },
