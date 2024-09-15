@@ -1,4 +1,4 @@
-console.log("Imported scripts!");
+console.log("Imported ok scripts!");
 // Init settings
 var settings = {
     "Statistics": { "ShowTasksSubmitted": "ON" },
