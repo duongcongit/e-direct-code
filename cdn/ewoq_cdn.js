@@ -125,9 +125,9 @@ window.addEventListener('keydown', eventHandler, false);
 
 // =========== TASK TIME COUNTER ===========
 const createTimeCounterClockBox = () => {
-    let cssTaskTime = 'left: 42vw; top: 10px; width: fit-content; min-width: 100px; background-color: rgb(68, 68, 68); position: fixed; border-radius: 10px; display: flex; justify-content: center; padding: 10px;'
+    let cssTaskTime = 'display:none; left: 42vw; top: 10px; width: fit-content; min-width: 100px; background-color: rgb(68, 68, 68); position: fixed; border-radius: 10px; justify-content: center; padding: 10px;'
     let timeCounterClockCounter = document.createElement("div");
-    let taskTimeContent = '<div id="task-time" style="display:none;' + cssTaskTime + '">'
+    let taskTimeContent = '<div id="task-time" style="' + cssTaskTime + '">'
         + '<img src="https://w7.pngwing.com/pngs/971/269/png-transparent-clock-computer-icons-clock-cdr-text-time-thumbnail.png" alt="" style="height: 20px;padding-right: 5px;margin-top: 2px;">'
         + '<p id="txt-task-time" style="margin: 0; display: inline;color: white;margin-top: 4px">0</p>'
         + '</div>';
