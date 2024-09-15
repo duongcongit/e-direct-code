@@ -136,8 +136,8 @@ const createTimeCounterClockBox = () => {
 }
 
 const showTimeCounterClockBox = () => {
-    document.getElementById("txt-task-time").innerText = convertTime(timeCounterClockCounter);
-    document.getElementById("task-time").style.display = "flex";
+    // document.getElementById("txt-task-time").innerText = convertTime(timeCounterClockCounter);
+    // document.getElementById("task-time").style.display = "flex";
     document.title = convertTime(timeCounterClockCounter) + " | Ewoq Rating Portal"
 }
 
