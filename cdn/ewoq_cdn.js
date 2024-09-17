@@ -16,7 +16,7 @@ var settings = {
 }
 
 var AutoScroll = [
-    { "name": "App Ads on Google Search", "behavior": "smooth", "pixels": 100, "status": "ON" },
+    { "name": "App Ads on Google Search", "behavior": "instant", "position": "center", "status": "ON" },
     { "name": "DSA Page Similarity", "behavior": "instant", "position": "center", "status": "ON" },
     { "name": "GLS Triggering", "behavior": "instant", "position": "center", "status": "ON" },
     { "name": "Keyword Query Relevance Evaluation", "behavior": "smooth", "pixels": 1000, "status": "ON" },
@@ -163,6 +163,41 @@ const radioButtonClickVideoBrand = (event) => {
     }, 100);
 };
 
+// For App Ads
+const radioButtonClickAppAds = (event) => {
+    // Get current question name
+    let name = event.target.getAttribute("name");
+    if (name == undefined) { return };
+    name = name.split("-")[0];
+
+    // Get list of question name
+    let btn = document.getElementsByClassName("ewoq-radio-button radioButtonQuestion");
+    let arr = [];
+    for (let i = 0; i < btn.length - 5; i++) {
+        if (i % 2 == 0) {
+            let name = btn[i].getAttribute("name");
+            name = name.split("-")[0];
+            arr.push(name)
+        }
+    }
+
+    // Find next question displayed and scroll
+    let params = AutoScroll.find(x => currentTk.includes(x.name));
+    let idx = arr.indexOf(name);
+    setTimeout(() => {
+        for (let i = idx + 1; i < arr.length; i++) {
+            let nextQuestionName = arr[i];
+            let nextQuestion = document.querySelector('ewoqtriggersection[question="' + nextQuestionName + '"]')
+            if (nextQuestion.style.display != "none") {
+                nextQuestion.scrollIntoView({ behavior: params.behavior, block: params.position });
+                console.log(nextQuestionName)
+                break;
+            }
+        }
+    }, 100);
+};
+
+
 // Click event
 autoScrollWorker.onmessage = async () => {
     currentTk = taskTitle.innerText; // Get task title
@@ -171,8 +206,16 @@ autoScrollWorker.onmessage = async () => {
         // Check
         if (!currentTk.includes(AutoScroll[i].name) || AutoScroll[i].status == "OFF") { continue; }
 
+        // For Play App
+        if (currentTk.includes("App Ads on Google Search")) {
+            let arr = document.getElementsByClassName("ewoq-radio-button radioButtonQuestion");
+            for (let k = 0; k < arr.length; k++) {
+                arr[k].addEventListener("click", radioButtonClickAppAds);
+            }
+        }
+
         // For GLS
-        if (currentTk.includes("GLS Triggering")) { // For GLS
+        else if (currentTk.includes("GLS Triggering")) { // For GLS
             let rg = 'ewoqradiobutton[name^="glsRelevance"][label="Yes"], ewoqradiobutton[name^="provider"], ewoqradiobutton[name^="verticalCorrect"][label="Yes"]';
             let arr = document.querySelectorAll(rg);
             for (let k = 0; k < arr.length; k++) {
