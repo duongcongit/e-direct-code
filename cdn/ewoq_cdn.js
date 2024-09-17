@@ -16,7 +16,7 @@ var settings = {
 }
 
 var AutoScroll = [
-    { "name": "App Ads on Google Search", "behavior": "smooth", "pixels": 100, "status": "OFF" },
+    { "name": "App Ads on Google Search", "behavior": "smooth", "pixels": 100, "status": "ON" },
     { "name": "DSA Page Similarity", "behavior": "instant", "position": "center", "status": "ON" },
     { "name": "GLS Triggering", "behavior": "instant", "position": "center", "status": "ON" },
     { "name": "Keyword Query Relevance Evaluation", "behavior": "smooth", "pixels": 1000, "status": "ON" },
