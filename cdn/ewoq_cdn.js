@@ -165,7 +165,7 @@ const radioButtonClickVideoBrand = (event) => {
 
 // Click event
 autoScrollWorker.onmessage = async () => {
-    currentTk = taskTit.innerText; // Get task title
+    currentTk = taskTitle.innerText; // Get task title
     // AUTO SCROLL
     let items = await chrome.runtime.sendMessage({ getAllSettings: true });
     AutoScroll = items.AutoScroll;
