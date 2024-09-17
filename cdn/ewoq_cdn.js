@@ -15,6 +15,19 @@ var settings = {
     "DateTime": { "Timezone": "default" }
 }
 
+var AutoScroll = [
+    { "name": "App Ads on Google Search", "behavior": "smooth", "pixels": 100, "status": "OFF" },
+    { "name": "DSA Page Similarity", "behavior": "instant", "position": "center", "status": "ON" },
+    { "name": "GLS Triggering", "behavior": "instant", "position": "center", "status": "ON" },
+    { "name": "Keyword Query Relevance Evaluation", "behavior": "smooth", "pixels": 1000, "status": "ON" },
+    { "name": "Lead_Dispute", "behavior": "smooth", "position": "end", "status": "ON" },
+    { "name": "Play App Content Screenshot Eval", "behavior": "smooth", "position": "center", "status": "ON" },
+    { "name": "Public Figures images", "behavior": "smooth", "pixels": 1000, "status": "OFF" },
+    { "name": "Query and Mobile App Match Evaluation", "behavior": "smooth", "pixels": 1000, "status": "OFF" },
+    { "name": "SemanticContainment", "behavior": "instant", "pixels": 1000, "status": "ON" },
+    { "name": "Video Brand Mention Detection", "behavior": "smooth", "position": "bottom", "status": "ON" },
+];
+
 // Task title
 var taskTitle = document.getElementsByClassName("taskTitle")[0];
 taskTitle.classList.add("notranslate");
@@ -76,6 +89,134 @@ const getRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// ===================== AUTO SCROLL =====================
+// For others
+const radioButtonClick = () => {
+    let params = AutoScroll.find(x => currentTk.includes(x.name));
+    //
+    let cnt = document.getElementsByClassName("content")[3];
+    setTimeout(() => {
+        cnt.scrollTop = cnt.scrollHeight - parseInt(params.pixels);
+    }, 100);
+};
+
+// For GLS
+const radioButtonClickGLS = (event) => {
+    let name = event.target.getAttribute("name");
+    if (name == undefined) { return };
+
+    // Set index of next question to scroll
+    let ques = document.getElementsByClassName("ewoq-trigger-section");
+    let idx = 0;
+    if (name.startsWith("glsRelevance")) { idx = 2; }
+    else if (name.startsWith("provider")) { idx = 3; }
+    else if (name.startsWith("verticalCorrect")) { idx = 5; }
+
+    // Scroll to next question
+    let params = AutoScroll.find(x => currentTk.includes(x.name));
+    setTimeout(() => { ques[idx].scrollIntoView({ behavior: params.behavior, block: params.position }); }, 100);
+};
+
+// Key work
+const scaleClick = () => {
+    let cnt = document.getElementsByClassName("content")[3];
+    setTimeout(() => {
+        cnt.scrollTop = cnt.scrollHeight - 1500
+    }, 100)
+};
+
+// For Video brand
+const radioButtonClickVideoBrand = (event) => {
+    // Get current question name
+    let name = event.target.getAttribute("name");
+    if (name == undefined) { return };
+    name = name.split("-")[0];
+
+    // Get list of question name
+    let btn = document.getElementsByClassName("ewoq-radio-button radioButtonQuestion");
+    let arr = [];
+    for (let i = 0; i < btn.length; i++) {
+        if (i % 2 == 0) {
+            let name = btn[i].getAttribute("name");
+            name = name.split("-")[0];
+            arr.push(name)
+        }
+    }
+
+    // Find next question displayed and scroll
+    let params = AutoScroll.find(x => currentTk.includes(x.name));
+    let idx = arr.indexOf(name);
+    setTimeout(() => {
+        for (let i = idx + 1; i < arr.length; i++) {
+            let nextQuestionName = arr[i];
+            let nextQuestion = document.querySelector('ewoqtriggersection[question="' + nextQuestionName + '"]')
+            if (nextQuestion.style.display != "none") {
+                nextQuestion.scrollIntoView({ behavior: params.behavior, block: params.position });
+                console.log(nextQuestionName)
+                break;
+            }
+        }
+    }, 100);
+};
+
+// Click event
+counterWker.onmessage = async () => {
+    currentTk = taskTit.innerText; // Get task title
+    // AUTO SCROLL
+    let items = await chrome.runtime.sendMessage({ getAllSettings: true });
+    AutoScroll = items.AutoScroll;
+    //
+    for (let i = 0; i < AutoScroll.length; i++) {
+        // Check
+        if (!currentTk.includes(AutoScroll[i].name) || AutoScroll[i].status == "OFF") { continue; }
+
+        // For GLS
+        if (currentTk.includes("GLS Triggering")) { // For GLS
+            let rg = 'ewoqradiobutton[name^="glsRelevance"][label="Yes"], ewoqradiobutton[name^="provider"], ewoqradiobutton[name^="verticalCorrect"][label="Yes"]';
+            let arr = document.querySelectorAll(rg);
+            for (let k = 0; k < arr.length; k++) {
+                arr[k].addEventListener("click", radioButtonClickGLS);
+            }
+        }
+        // For Video brand
+        else if (currentTk.includes("Video Brand Mention Detection")) {
+            let arr = document.getElementsByClassName("ewoq-radio-button radioButtonQuestion");
+            for (let k = 0; k < arr.length; k++) {
+                arr[k].addEventListener("click", radioButtonClickVideoBrand);
+            }
+
+            let text = document.getElementsByClassName("prompt")[1];
+            if (text != undefined) {
+                text.addEventListener("click", textVideoBrandClick)
+            }
+
+            let query1 = document.querySelector("[name='query1'] a");
+            let query2 = document.querySelector("[name='query2'] a");
+            if (query1 != undefined || query2 != undefined) {
+                query1.href = query1.innerText;
+                query2.href = query2.innerText;
+            }
+
+        }
+        // For others
+        else {
+            let arr = document.getElementsByClassName("ewoq-radio-button radioButtonQuestion");
+            for (let k = 0; k < arr.length; k++) {
+                arr[k].addEventListener("click", radioButtonClick);
+            }
+            // Thanh 
+            if (currentTk.includes("Keyword Query Relevance Evaluation")) {
+                let scale = document.getElementsByClassName("ewoq-continuous-scale-track")[0];
+                if (scale != undefined) {
+                    scale.addEventListener("click", scaleClick);
+                }
+            }
+
+        }
+    }
+};
+
+// ===================== AUTO SCROLL =====================
 
 // =========== AUTO COUNT Submit button ===========
 // Check if submit button is enabled or not
