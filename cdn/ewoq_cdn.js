@@ -66,6 +66,10 @@ var counterWorker = new Worker(window.URL.createObjectURL(blob));
 var blob2 = new Blob(["setInterval(function() {postMessage('');}, 50); "]);
 var submitBtnWorker = new Worker(window.URL.createObjectURL(blob2));
 
+// Worker
+var blob3 = new Blob(["setInterval(function() {postMessage('');}, 1000); "]);
+var autoScrollWorker = new Worker(window.URL.createObjectURL(blob3));
+
 /********** FUCNTION **********/
 // Function convert time
 const convertTime = (second) => {
