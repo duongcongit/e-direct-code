@@ -173,12 +173,11 @@ const radioButtonClickAppAds = (event) => {
     // Get list of question name
     let btn = document.getElementsByClassName("ewoq-radio-button radioButtonQuestion");
     let arr = [];
-    for (let i = 0; i < btn.length - 5; i++) {
-        if (i % 2 == 0) {
-            let name = btn[i].getAttribute("name");
-            name = name.split("-")[0];
-            arr.push(name)
-        }
+    for (let i = 0; i < btn.length; i++) {
+        let name = btn[i].getAttribute("name");
+        name = name.split("-")[0];
+        let idx = arr.find(x => x == name)
+        if (idx == undefined) { arr.push(name) }
     }
 
     // Find next question displayed and scroll
