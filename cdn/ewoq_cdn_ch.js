@@ -9,7 +9,7 @@ var settings = {
     },
     "Timing": { "TimeCounterClock": "ON" },
     "Automation": {
-        "AutoReload": { "status": "OFF", "time": 300 },
+        "AutoReload": { "status": "ON", "time": 300 },
         "AutoSubmit": { "status": "ON", "startTime": 40, "endTime": 40 }
     },
     "DateTime": { "Timezone": "default" }
