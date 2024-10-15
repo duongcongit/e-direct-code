@@ -5,7 +5,7 @@ var settings = {
     "Notifications": { "TasksAvailable": "ON", "TaskIsSubmitted": "OFF" },
     "Sounds": {
         "TaskIsSubmitted": { "status": "OFF", "loop": false, "SoundUrl": "" },
-        "TasksAvailable": { "status": "OFF", "loop": false, "SoundUrl": "https://www.dropbox.com/scl/fi/9qdj2wqbm6e8w029wqgvb/old-telephone-ring.mp3?rlkey=xqwl04urisgwf92jksvbwhgws&st=dn4s9ysh&dl=1" }
+        "TasksAvailable": { "status": "ON", "loop": false, "SoundUrl": "https://www.dropbox.com/scl/fi/9qdj2wqbm6e8w029wqgvb/old-telephone-ring.mp3?rlkey=xqwl04urisgwf92jksvbwhgws&st=dn4s9ysh&dl=1" }
     },
     "Timing": { "TimeCounterClock": "ON" },
     "Automation": {
