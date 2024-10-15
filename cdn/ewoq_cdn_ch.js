@@ -226,7 +226,7 @@ const resetAutoReloadCounter = () => {
 // =========== TASK AVAILABLE NOTI ===========
 const createTaskAvailableNotiBox = () => {
     let notiBox = document.createElement("div");
-    notiBox.innerHTML = '<div id="task-avail-noti-box" class="notranslate" style="display:none">'
+    notiBox.innerHTML = '<div id="task-avail-noti-box" class="notranslate" style="display:none; left: 40vw; top: 10px; width: fit-content; min-width: 200px; background-color: rgb(68, 68, 68); position: fixed; border-radius: 10px; padding: 9px 10px 0px 10px; display: flex; justify-content: center; text-align: center;">'
         + '<div>'
         + '<p style="margin: 5px; display: inline;color: white; font-size: large;font-weight: 900;">Ting ting</p>'
         + '<br>'
