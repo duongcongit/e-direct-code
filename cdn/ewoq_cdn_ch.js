@@ -2,30 +2,30 @@ console.log("Imported scripts!");
 // Init settings
 var settings = {
     "Statistics": { "ShowTasksSubmitted": "ON" },
-    "Notifications": { "TasksAvailable": "OFF", "TaskIsSubmitted": "OFF" },
+    "Notifications": { "TasksAvailable": "ON", "TaskIsSubmitted": "OFF" },
     "Sounds": {
         "TaskIsSubmitted": { "status": "OFF", "loop": false, "SoundUrl": "" },
-        "TasksAvailable": { "status": "OFF", "loop": false, "SoundUrl": "old-telephone-ring.mp3" }
+        "TasksAvailable": { "status": "OFF", "loop": false, "SoundUrl": "https://www.dropbox.com/scl/fi/9qdj2wqbm6e8w029wqgvb/old-telephone-ring.mp3?rlkey=xqwl04urisgwf92jksvbwhgws&st=dn4s9ysh&dl=1" }
     },
     "Timing": { "TimeCounterClock": "ON" },
     "Automation": {
         "AutoReload": { "status": "OFF", "time": 300 },
-        "AutoSubmit": { "status": "ON", "startTime": 40, "endTime": 40 }
+        "AutoSubmit": { "status": "ON", "startTime": 40, "endTime": 60 }
     },
     "DateTime": { "Timezone": "default" }
 }
 
 var AutoScroll = [
-    { "name": "App Ads on Google Search", "behavior": "instant", "position": "end", "status": "ON" },
-    { "name": "DSA Page Similarity", "behavior": "instant", "position": "center", "status": "ON" },
-    { "name": "GLS Triggering", "behavior": "instant", "position": "center", "status": "ON" },
-    { "name": "Keyword Query Relevance Evaluation", "behavior": "smooth", "pixels": 1000, "status": "ON" },
-    { "name": "Lead_Dispute", "behavior": "smooth", "position": "end", "status": "ON" },
-    { "name": "Play App Content Screenshot Eval", "behavior": "smooth", "position": "center", "status": "ON" },
+    { "name": "App Ads on Google Search", "behavior": "instant", "position": "end", "status": "OFF" },
+    { "name": "DSA Page Similarity", "behavior": "instant", "position": "center", "status": "OFF" },
+    { "name": "GLS Triggering", "behavior": "instant", "position": "center", "status": "OFF" },
+    { "name": "Keyword Query Relevance Evaluation", "behavior": "smooth", "pixels": 1000, "status": "OFF" },
+    { "name": "Lead_Dispute", "behavior": "smooth", "position": "end", "status": "OFF" },
+    { "name": "Play App Content Screenshot Eval", "behavior": "smooth", "position": "center", "status": "OFF" },
     { "name": "Public Figures images", "behavior": "smooth", "pixels": 1000, "status": "OFF" },
     { "name": "Query and Mobile App Match Evaluation", "behavior": "smooth", "pixels": 1000, "status": "OFF" },
-    { "name": "SemanticContainment", "behavior": "instant", "pixels": 1000, "status": "ON" },
-    { "name": "Video Brand Mention Detection", "behavior": "smooth", "position": "bottom", "status": "ON" },
+    { "name": "SemanticContainment", "behavior": "instant", "pixels": 1000, "status": "OFF" },
+    { "name": "Video Brand Mention Detection", "behavior": "smooth", "position": "bottom", "status": "OFF" },
 ];
 
 // Task title
