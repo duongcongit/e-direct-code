@@ -4,7 +4,7 @@
 
 const extensionUrl = chrome.runtime.getURL("");
 
-// ***************** FUNCTION *****************
+// ***************** FUNCTION ******************
 
 const ext = async () => {
     chrome.management.getAll((info) => {
